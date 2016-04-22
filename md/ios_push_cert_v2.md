@@ -58,5 +58,26 @@
 
 ![Generate SSL certificate](images/ios_cert_v2/generate_ssl_certificate.png)
 
-8. 点击 Download 下载生成的证书。
+8. 点击 Download 下载生成的证书，并双击导入到 Keychain Access 中。
 9. 点击 Done。
+
+## 验证 App ID 的推送服务是否打开
+
+1. 点击 Identifiers 下的 App IDs。
+2. 选择与应用 bundle ID 匹配的 App ID。
+3. 如果下图中红色方框中显示 Enabled，表示 App ID 的推送证书已配置好。
+
+![Verify push notification](images/ios_cert_v2/verify_push_notification.png)
+
+## 导出证书
+
+1. 打开 Keychain Access，找到要导出的证书。证书名有前缀 Apple Push Services。
+2. 右键点击证书，选择导出（Export）。选择保存格式为 .p12。此时会提示您输入密码来保护导出的证书，此时请不要输入密码，让两个输入框为空，点击 OK。接着又会弹出一个对话框，要求您输入 OS X 账户的密码来允许从 Keychain Access 中导出，请填写密码并点击允许（Allow）。
+
+## 上传证书
+
+1. 进入 LeanCloud 应用控制台。
+2. 点击消息，选择推送下面的设置。
+3. 根据您的证书类别进行上传。这里请注意区分证书的类别，测试环境证书和生产环境证书请勿混淆。
+
+![Push certificate configure](images/ios_cert_v2/push_certificate_config.png)
