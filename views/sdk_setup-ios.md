@@ -1,6 +1,6 @@
 # Objective-C SDK 安装指南
 
-### 自动安装
+## 自动安装
 通过 [CocoaPods](http://www.cocoapods.org) 来安装可以最大化地简化安装过程。
 
 首先，在项目根目录下的 Podfile 文件中添加以下 pods：
@@ -14,7 +14,7 @@ pod 'AVOSCloudCrashReporting' # 错误报告模块
 然后在项目根目录执行 `pod install` 命令，就能将 SDK 集成到您的项目中。
 
 
-### 手动安装
+## 手动安装
 
 首先，将指定版本的源码 clone 到您的项目根目录：
 
@@ -60,7 +60,7 @@ git submodule update --init
 这样就集成完毕了。
 
 
-### 初始化 SDK
+## 初始化 SDK
 
 打开 AppDelegate 文件，添加下列导入语句到头部：
 
@@ -110,6 +110,6 @@ AVObject *testObject = [AVObject objectWithClassName:@"TestObject"];
 {% endif %}
 
 
-### 社交组件
+## 社交组件
 
 最后，如果希望使用社交组件功能，可以使用我们的开源组件：[leancloud-social-ios](https://github.com/leancloud/leancloud-social-ios)。
