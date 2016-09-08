@@ -1264,8 +1264,8 @@ query.find { result in
 ```swift
 let query = LCQuery(className: "Todo")
 let point = LCGeoPoint(latitude: 39.9, longitude: 116.4)
-let from  = LCGeoPoint.Distance(value: 1.0, unit: LCGeoPoint.Unit.Kilometer)
-let to    = LCGeoPoint.Distance(value: 2.0, unit: LCGeoPoint.Unit.Kilometer)
+let from  = LCGeoPoint.Distance(value: 1.0, unit: .Kilometer)
+let to    = LCGeoPoint.Distance(value: 2.0, unit: .Kilometer)
 
 // 查询离指定 point 距离在 1.0 和 2.0 公里的 Todo
 query.whereKey("whereCreated", .NearbyPointWithRange(origin: point, from: from, to: to))
