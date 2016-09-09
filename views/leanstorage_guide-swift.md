@@ -599,7 +599,7 @@ let lcArray = LCArray(unsafeObject: [1, "abc", ["foo": true]])
 let lcArray: LCArray = [LCNumber(1), LCString("abc")]
 ```
 
-注意：当使用数组字面量构造 `LCArray` 对象时，数组字面量的类型必须是 [LCType]。
+注意：当使用数组字面量构造 `LCArray` 对象时，数组字面量的类型必须是 `[LCType]`。
 
 #### LCDate
 `LCDate` 是 `NSDate` 类型的封装，它与 `NSDate` 相互转化的代码如下：
