@@ -58,7 +58,7 @@ import LeanCloud
 然后粘贴下列代码到 `application:didFinishLaunchingWithOptions` 函数内：
 
 ```swift
-// applicationId 即 App Id，clientKey 是 App Key。
+// applicationId 即 App Id，applicationKey 是 App Key
 LeanCloud.initialize(applicationID: "{{appid}}", applicationKey: "{{appkey}}")
 ```
 {% endblock %}
@@ -66,10 +66,10 @@ LeanCloud.initialize(applicationID: "{{appid}}", applicationKey: "{{appkey}}")
 {% block sdk_switching_node %}
 
 ```swift
-//如果使用美国站点，请加上这行代码，并且写在初始化前面
+// 如果使用美国站点，请加上这行代码，并且写在初始化前面
 LeanCloud.setServiceRegion(.US)
 
-// applicationId 即 App Id，clientKey 是 App Key。
+// applicationId 即 App Id，applicationKey 是 App Key
 LeanCloud.initialize(applicationID: "{{appid}}", applicationKey: "{{appkey}}")
 ```
 {% endblock %}

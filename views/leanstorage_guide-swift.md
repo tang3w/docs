@@ -749,25 +749,25 @@ query.find { result in
 
 逻辑操作 | AVQuery 方法|
 ---|---
-等于 | `whereKey("key", .EqualTo(42))`
-不等于 |  `whereKey("key", .NotEqualTo(42))`
-大于 | `whereKey("key", .GreaterThan(42))`
-大于等于 | `whereKey("key", .GreaterThanOrEqualTo(42))`
-小于 | `whereKey("key", .LessThan(42))`
-小于等于 | `whereKey("key", .LessThanOrEqualTo(42))`
+等于 | `whereKey("drink", .EqualTo("Pepsi"))`
+不等于 |  `whereKey("hasFood", .NotEqualTo(true))`
+大于 | `whereKey("expirationDate", .GreaterThan(NSDate()))`
+大于等于 | `whereKey("age", .GreaterThanOrEqualTo(18))`
+小于 | `whereKey("pm25", .LessThan(75))`
+小于等于 | `whereKey("count", .LessThanOrEqualTo(10))`
 {% endblock %}
 
 {% block code_query_lessThan %}
 
 ```swift
-query.whereKey("priority", .LessThan(42))
+query.whereKey("priority", .LessThan(2))
 ```
 {% endblock %}
 
 {% block code_query_greaterThanOrEqualTo %}
 
 ```swift
-query.whereKey("priority", .GreaterThanOrEqualTo(42))
+query.whereKey("priority", .GreaterThanOrEqualTo(2))
 ```
 {% endblock %}
 
@@ -1138,7 +1138,10 @@ priorityQuery.whereKey("priority", .GreaterThanOrEqualTo(3))
 let statusQuery = LCQuery(className: "Todo")
 statusQuery.whereKey("status", .EqualTo(1))
 
-let query = priorityQuery.or(statusQuery)
+let titleQuery = LCQuery(className: "Todo")
+titleQuery.whereKey("title", .MatchedSubstring("李总"))
+
+let query = priorityQuery.or(statusQuery).or(titleQuery)
 
 query.find { result in
     switch result {
@@ -1256,7 +1259,7 @@ query.find { result in
 {% endblock %}
 
 {% block text_platform_geoPoint_notice %}
-* iOS 8.0 之后，使用定位服务之前，需要调用 `locationManager.requestWhenInUseAuthorization()` 或 `locationManager.requestAlwaysAuthorization()` 来获取用户的「使用期授权」或「永久授权」，而这两个请求授权需要在 `info.plist` 里面对应添加 `NSLocationWhenInUseUsageDescription` 或 `NSLocationAlwaysUsageDescription` 的键值对，值为开启定位服务原因的描述。SDK 内部默认使用的是「使用期授权」。
+* iOS 8.0 之后，使用定位服务之前，需要调用 `locationManager.requestWhenInUseAuthorization()` 或 `locationManager.requestAlwaysAuthorization()` 来获取用户的「使用期授权」或「永久授权」，而这两个请求授权需要在 `Info.plist` 里面对应添加 `NSLocationWhenInUseUsageDescription` 或 `NSLocationAlwaysUsageDescription` 的键值对，值为开启定位服务原因的描述。SDK 内部默认使用的是「使用期授权」。
 {% endblock %}
 
 {% block code_query_geoPoint_within %}
