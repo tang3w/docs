@@ -431,7 +431,11 @@ typedef NS_ENUM(NSInteger, YourCustomMessageType) {
 - (void)textFieldDidChange:(UITextField *)textField {
     // 发送一条暂态消息给 Jerry，让 Jerry 知道 Tom 正在输入
     YourOperationMessage *message = [YourOperationMessage messageWithText:@"正在输入……" attributes:nil];
-    [self.tomConversation sendMessage:message options:AVIMMessageSendOptionTransient callback:nil];
+
+    AVIMMessageOption *option = [[AVIMMessageOption alloc] init];
+    option.transient = YES;
+
+    [self.tomConversation sendMessage:message option:option callback:nil];
 }
 
 @end
@@ -465,10 +469,13 @@ typedef NS_ENUM(NSInteger, YourCustomMessageType) {
 {% endblock %}
 
 {% block message_sent_ack %}
-调用 `sendMessage` 方法时，在 options 中传入 `AVIMMessageSendOptionRequestReceipt`：
+调用 `sendMessage` 方法时，指定 option 参数的 `receipt` 属性为 `YES`：
 
 ```objc
-[conversation sendMessage:message options:AVIMMessageSendOptionRequestReceipt callback:^(BOOL succeeded, NSError *error) {
+AVIMMessageOption *option = [[AVIMMessageOption alloc] init];
+option.receipt = YES;
+
+[conversation sendMessage:message option:option callback:^(BOOL succeeded, NSError *error) {
   if (succeeded) {
     NSLog(@"发送成功！需要回执");
   }
@@ -1175,6 +1182,29 @@ AVIMConversation 属性名 | _Conversation 字段|含义
         }];
     }];
 }
+```
+{% endblock %}
+
+{% set message_priority_default_varname = 'AVIMMessagePriorityDefault' %}
+{% set message_priority_high_varname    = 'AVIMMessagePriorityHigh' %}
+{% set message_priority_normal_varname  = 'AVIMMessagePriorityNormal' %}
+{% set message_priority_low_varname     = 'AVIMMessagePriorityLow' %}
+
+{% block message_priority %}
+```objc
+// chatroom 是一个暂态对话
+AVIMConversation *chatroom;
+
+AVIMMessageOption *option = [[AVIMMessageOption alloc] init];
+
+// 将本次发送的消息设置为高等级
+option.priority = AVIMMessagePriorityHigh;
+
+AVIMTextMessage *message = [AVIMTextMessage messageWithText:@"紧急通知" attributes:nil];
+
+[chatroom sendMessage:message option:option callback:^(BOOL succeeded, NSError *error) {
+    // ...
+}];
 ```
 {% endblock %}
 
