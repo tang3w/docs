@@ -468,6 +468,23 @@ typedef NS_ENUM(NSInteger, YourCustomMessageType) {
 这样 iOS 平台上的用户就可以收到消息推送了。当然，前提是应用本身申请到了 RemoteNotification 权限，也将正确的推送证书上传到了 LeanCloud 控制台。
 {% endblock %}
 
+{% block message_push_data %}
+```objc
+AVIMConversation *conversation;
+
+NSString *text = @"昨晚失眠，今天请个假";
+
+AVIMTextMessage  *message = [AVIMTextMessage messageWithText:text attributes:nil];
+AVIMMessageOption *option = [[AVIMMessageOption alloc] init];
+
+option.pushData = @{ @"alert": [NSString stringWithFormat:@"%@", text] };
+
+[conversation sendMessage:message option:option callback:^(BOOL succeeded, NSError *error) {
+    // ...
+}];
+```
+{% endblock %}
+
 {% block message_sent_ack %}
 调用 `sendMessage` 方法时，指定 option 参数的 `receipt` 属性为 `YES`：
 
