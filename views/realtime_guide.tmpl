@@ -824,6 +824,17 @@ Black 发现对话名字不够酷，他想修改成「聪明的喵星人」 ，�
 ```
 {% endblock %}
 
+再例如，要查询自己参与过的对话，包括系统对话，可以这样构建查询：
+
+{% block conversation_query_all_include_system %}
+```
+- 初始化 ClientId = Tom
+- Tom 登录
+- 构建组合查询：m 等于 Tom 并且 sys 等于 true
+- 执行查询
+```
+{% endblock %}
+
 只要查询构建得合理，开发者完全不需要担心组合查询的性能。
 
 {% block conversation_query_cache %}
