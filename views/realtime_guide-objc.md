@@ -527,7 +527,7 @@ AVIMTextMessage *message = [AVIMTextMessage messageWithText:@"Hello, Jerry!" att
 [conversation readInBackground];
 ```
 
-5. Jerry 读完消息后，Tom 将收到一个消息已读回执。回执即反映在对话的 `lastReadAt` 属性的变化上。由于 Tom 之前对该属性进行了观察，`observer` 将会捕捉到这个变化：
+5. Jerry 读完消息后，Tom 将收到一个消息已读回执。此时对话的 `lastReadAt` 属性会改变。由于 Tom 之前对该属性进行了观察，`observer` 将会捕捉到这个变化：
 
 ```objc
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
