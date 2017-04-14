@@ -504,9 +504,9 @@ typedef NS_ENUM(NSInteger, YourCustomMessageType) {
 [conversation addObserver:observer forKeyPath:@"lastReadAt" options:NSKeyValueObservingOptionNew context:nil];
 ```
 
-当 Jerry 阅读消息后，`lastReadAt` 属性会发生变化，该变化可以在 `observer` 对象中捕捉到。
+当 Jerry 阅读完消息后，服务端将会把阅读事件回执给 Tom，Tom 将会观察到 `lastReadAt` 属性发生变化。
 
-3. Tom 向 Jerry 发送一条消息，并设置为「需要回执」，即将消息发送选项的 `receipt` 字段设置为 `YES`：
+3. Tom 向 Jerry 发送一条消息，并设置为「需要回执」，也就是将消息发送选项的 `receipt` 字段设置为 `YES`：
 
 ```objc
 AVIMMessageOption *option = [[AVIMMessageOption alloc] init];
