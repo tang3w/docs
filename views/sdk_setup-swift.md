@@ -34,7 +34,7 @@ https://ruby.taobao.org
 ```ruby
 use_frameworks!
 
-target 'YourAppTarget' do
+target 'YOUR_APP_TARGET' do # Replace YOUR_APP_TARGET with your app target name.
     pod 'LeanCloud', '~> 13.0.0'
 end
 ```
