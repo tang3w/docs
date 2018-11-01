@@ -666,7 +666,7 @@ if let url = URL(string: "https://ww3.sinaimg.cn/bmiddle/596b0666gw1ed70eavm5tg2
     let file = LCFile(url: url)
 }
 
-// You can also directly use URL string to construct file.
+// or use a URL string directly to construct a LCFile instance.
 let file = LCFile(url: "https://ww3.sinaimg.cn/bmiddle/596b0666gw1ed70eavm5tg20bq06m7wi.gif")
 ```
 {% endblock %}
